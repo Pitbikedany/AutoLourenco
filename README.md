@@ -18,6 +18,8 @@ O principal objetivo desta aplicação é otimizar os processos administrativos 
 
 **Serviços:** Controle e registro dos serviços prestados.
 
+**Área do Patrão:** Menu admin fornecido pelo django
+
 # Início e Status do Projeto
 
 O desenvolvimento deste projeto começou em Maio de 2024 e ainda está em progresso, com atualizações regulares no âmbito de melhorar cada vez mais este projeto
@@ -26,3 +28,4 @@ O desenvolvimento deste projeto começou em Maio de 2024 e ainda está em progre
 
 A aplicação está a ser desenvolvida em Python, uma linguagem de programação versátil e poderosa, em conjunto com a framework Django, conhecida pela sua robustez e escalabilidade no desenvolvimento de aplicações web. Esta combinação permite criar uma aplicação segura, rápida e fácil de manter.
 
+Mais tarde este projeto irá ser adicionado a um servidor!!!!
