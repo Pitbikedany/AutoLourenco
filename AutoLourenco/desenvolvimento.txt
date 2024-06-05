@@ -1,0 +1,7 @@
+------ A FAZER -------
+sistema de mensagens
+sistema de pontos
+sistema de login(provavelmente nao fazer) 
+sistema de area de cliente(provavelmente nao fazer)
+editar agenda(mecanico e matricula)
+sistema de alertas

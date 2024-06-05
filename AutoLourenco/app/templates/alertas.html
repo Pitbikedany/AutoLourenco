@@ -1,0 +1,16 @@
+{% for message in messages %}
+<style>
+    body{
+        background: #201b2c;
+        color: white;
+    }
+</style>
+
+    <div class="container-fluid p-1">
+        <div class="alert alert-{{ message.tags }} alert-dismissble" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close">
+            </button>
+            {{ message }}
+        </div>
+    </div>
+{% endfor %}

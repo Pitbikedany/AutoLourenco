@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'style_home.css' %}">
+    <script src="https://kit.fontawesome.com/931c8a45bc.js" crossorigin="anonymous"></script>
+    <title>🛠AUTO LOURENÇO🛠</title>
+</head>
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <img src="{% static 'car_lourenco.svg' %}" class= "left-login-image" alt="Animated login image">
+        </div>
+        <div class="right-login">
+            <div class="card-login">
+                <h1>🛠AUTO LOURENÇO🛠</h1>
+                    {% csrf_token %}
+                    <div class="textfield">
+                        <a class="a" href="{% url 'url_clientes' %}">
+                            <button class="btn-login">Clientes</button>
+                        </a>
+                    </div>
+                    <div class="textfield">
+                        <a class="a" href="{% url 'url_carros' %}">
+                            <button class="btn-login">Carros</button>
+                        </a>
+                    </div>
+                    <div class="textfield">
+                        <a class="a" href="{% url 'url_agenda' %}">
+                            <button class="btn-login">Agenda</button>
+                        </a>
+                    </div>
+                    <div class="textfield">
+                        <a  class="a" href="{% url 'url_servicos' %}">
+                            <button class="btn-login">Serviços</button>
+                        </a>
+                    </div>
+                    <div class="textfield">
+                        <a  class="a" href="{% url 'admin:index' %}">
+                            <button class="btn-login">Patrão</button>
+                        </a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
