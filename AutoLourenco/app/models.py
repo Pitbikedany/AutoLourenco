@@ -45,3 +45,20 @@ class Servicos(models.Model):
 
     def __str__(self):
         return self.matricula
+
+class Faturas(models.Model):
+    matricula = models.ForeignKey(Carro,on_delete=models.CASCADE)
+    data = models.DateField()
+
+    def __str__(self):
+        return self.matricula
+
+class Item(models.Model):
+    fatura = models.ForeignKey(Faturas, on_delete=models.CASCADE, related_name='itens')
+    descricao = models.CharField(max_length=50)
+    quantidade = models.IntegerField()
+    preco = models.DecimalField(max_digits=7,decimal_places=2)
+    total = models.DecimalField(max_digits=7,decimal_places=2)
+
+    def __str__(self):
+        return self.descricao

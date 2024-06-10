@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Cliente,Agenda,Servicos,Carro,Mecanico
+from .models import Cliente,Agenda,Servicos,Carro,Mecanico,Faturas,Item
 
 class MecanicoForm(ModelForm):
     class Meta:
@@ -40,3 +40,21 @@ class ServicosForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['matricula'].empty_label = "Selecione uma matrícula "
         self.fields['servico'].empty_label = "Selecione o serviço"
+
+class FaturasForm(ModelForm):
+    class Meta:
+        model = Faturas
+        fields = ['matricula','data']
+    
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['matricula'].empty_label = "Selecione uma matrícula "
+
+class ItemForm(ModelForm):
+    class Meta:
+        model = Item
+        fields = ['descricao','quantidade','preco','total']
+    
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['matricula'].empty_label = "Selecione uma matrícula "

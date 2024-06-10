@@ -1,15 +1,19 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Cliente,Agenda,Servicos,Carro
-from .form import ClienteForm, AgendaForm,ServicosForm,CarroForm
-from django.contrib import messages
-from time import sleep
+from .models import Cliente,Agenda,Servicos,Carro,Faturas,Item
+from .form import ClienteForm, AgendaForm,ServicosForm,CarroForm,FaturasForm,ItemForm
+from django.http import FileResponse
+from django.forms import inlineformset_factory
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import mm
+from reportlab.lib.pagesizes import A4
+
 def home(request):
     return render(request,'home.html')
 
 def clientes(request):
     filtro = request.GET.get('telemovel','')
     info = {}
-    messages.success(request,'Ola')
     if filtro:
         info['clientes'] = Cliente.objects.filter(telemovel = filtro)
         return render(request,'lista_clientes.html',info)
@@ -126,7 +130,7 @@ def deletecarro(request,matricula):
 def editcarros(request,matricula):
     edit = get_object_or_404(Carro,pk=matricula)
 
-    if(request.method =='POST'):
+    if (request.method =='POST'):
         edit.marca = request.POST.get('marca')
         edit.modelo = request.POST.get('modelo')
         edit.matricula = request.POST.get('matricula')
@@ -150,3 +154,49 @@ def editservicos(request,id):
         return redirect('/servicos')
     else:
         return render(request,'editservicos.html', {'edit':edit})
+
+def gen_pdf(request):
+
+    pdf = canvas.Canvas('nome_pdf.pdf',pagesize=A4)
+    pdf.drawCentredString(2,2,"teste")
+    pdf.save()
+
+    return FileResponse()
+
+# def nova_fatura(request):
+#     info = {}
+#     fatura_form = FaturasForm(request.POST or None)
+#     item_fatura_factory = inlineformset_factory(Faturas, Item, form=ItemForm, extra=1)
+#     item_fatura = item_fatura_factory()
+
+#     if fatura_form.is_valid() and item_fatura():
+#         print("ola")
+#         fatura = fatura_form.save()
+#         item_fatura.instance = fatura
+#         item_fatura.save()
+#         return redirect('url_servicos')
+#     info['fatura_form'] = fatura_form
+#     info['item_fatura'] = item_fatura
+#     return render(request,'fatura.html', info)
+
+def nova_fatura(request):
+    item_fatura = inlineformset_factory(Faturas, Item, form=ItemForm, extra=1)
+    if request.method == 'POST':
+        fatura_form = FaturasForm(request.POST)
+        formset = item_fatura(request.POST)
+        if fatura_form.is_valid() and formset.is_valid():
+            fatura = fatura_form.save()
+            itens = formset.save(commit=False)
+            for item in itens:
+                item.fatura = fatura
+                item.save()
+            return redirect('')
+    else:
+        fatura_form = FaturasForm()
+        formset = item_fatura()
+    return render(request, 'fatura.html', {'fatura_form': fatura_form, 'formset': formset})
+
+    def faturas(request):
+        fatura = get_object_or_404(Faturas, pk=id)
+        return render(request,'faturacao.html')
+
