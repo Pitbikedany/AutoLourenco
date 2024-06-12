@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path,reverse
 from app.views import home,novo_cliente,clientes,agendas,nova_agenda,novo_servico,servicos,carros,novo_carro,deleteagenda,deletecliente,deletecarro
-from app.views import deleteservico,editcliente,editcarros,editagenda,editservicos,gen_pdf,nova_fatura,faturas
+from app.views import deleteservico,editcliente,editcarros,editagenda,editservicos,nova_fatura,faturas,deletefatura,editfatura 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,12 +39,9 @@ urlpatterns = [
     path('servicos/deleteservico/<int:id>',deleteservico, name='delete-servico'),
     #edit servicos
     path('servicos/editservico/<int:id>',editservicos, name='edit-servico'),
-    path('pdfs',gen_pdf, name='criar-pdf'),
     path('novafatura/',nova_fatura, name='url_nova_fatura'),
-    path('listafaturas/',faturas, name='url_faturas'),
-
-
-
-
+    path('faturas/',faturas, name='url_faturas'),
+    path('faturas/deletefatura/<int:id>',deletefatura, name='delete-fatura'),
+    path('faturas/editfatura/<int:id>',editfatura, name='edit-fatura'),
 
 ]

@@ -59,15 +59,18 @@ class FaturasForm(ModelForm):
         model = Faturas
         fields = ['matricula','data']
     
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['matricula'].empty_label = "Selecione uma matrícula "
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['matricula'].empty_label = "Selecione uma matrícula "
 
 class ItemForm(ModelForm):
     class Meta:
         model = Item
-        fields = ['descricao','quantidade','preco','total']
+        fields = ['descricao','quantidade','preco']
     
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['matricula'].empty_label = "Selecione uma matrícula "
+    def  __init__(self, *args, **kwargs):
+        super(ItemForm, self).__init__(*args, **kwargs)
+    
+        self.fields['descricao'].widget.attrs['placeholder'] = 'Descrição'
+        self.fields['quantidade'].widget.attrs['placeholder'] = 'Quantidade'
+        self.fields['preco'].widget.attrs['placeholder'] = 'Preço'
