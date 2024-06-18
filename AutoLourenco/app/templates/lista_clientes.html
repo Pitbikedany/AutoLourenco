@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'listaclientes.css' %}">
+    <script src="https://kit.fontawesome.com/931c8a45bc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+
+    <title>🛠AUTO LOURENÇO🛠</title>
+</head>
+<body>
+    <div class="form-div">
+        <form action="{% url 'url_novo_cliente' %}">
+            <button type="submit" class="btn-login">+CLIENTE</button>
+        </form>
+
+        <form action="{% url 'url_home'%}">
+            <button class="btn-login">VOLTAR</button>
+        </form>
+    </div>
+    <div class="div-input">
+        <form method="GET">
+            {% csrf_token %}
+            <input type="text" name="telemovel" placeholder="Telemóvel">
+            <button class="btn-voltar" type="submit">Procurar</button>
+        </form>
+    </div>
+
+    <table>
+        <tr>
+            <th>NOME</th>
+            <th>TELEMÓVEL</th>
+            <th>EMAIL</th>
+        </tr>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{cliente.nome}} {{cliente.apelido}}</td>
+            <td>{{cliente.telemovel}}</td>
+            <td>{{cliente.email}} <a href="deletecliente/{{cliente.telemovel}}"><i class="fa-solid fa-trash"></i></a> <a href="editcliente/{{cliente.telemovel}}"><i class="fa-solid fa-edit"></i></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

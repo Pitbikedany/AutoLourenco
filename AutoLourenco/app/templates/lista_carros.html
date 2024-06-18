@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'listaclientes.css' %}">
+    <script src="https://kit.fontawesome.com/931c8a45bc.js" crossorigin="anonymous"></script>
+    <title>🛠AUTO LOURENÇO🛠</title>
+</head>
+<body>
+    <div class="form-div">
+        <form action="{% url 'url_novo_carro' %}">
+            <button type="submit" class="btn-login">+CARRO</button>
+        </form>
+
+        <form action="{% url 'url_home'%}">
+            <button class="btn-login">VOLTAR</button>
+        </form>
+    </div>
+    <div class="div-input">
+        <form method="GET">
+            {% csrf_token %}
+            <input type="text" name="matricula" placeholder="Matrícula">
+            <button class="btn-voltar" type="submit">Procurar</button>
+        </form>
+    </div>
+
+    <table>
+        <tr>
+            <th>CLIENTE</th>
+            <th>MARCA</th>
+            <th>MODELO</th>
+            <th>MATRÍCULA</th>
+            <th>ANO</th>
+        </tr>
+        {% for carro in carros %}
+        <tr>
+            <td>{{carro.telemovel}}</td>
+            <td>{{carro.marca}}</td>
+            <td>{{carro.modelo}}</td>
+            <td>{{carro.matricula}}</td>
+            <td>{{carro.ano}} <a href="deletecarro/{{carro.matricula}}"><i class="fa-solid fa-trash"></i></a><a href="editcarro/{{carro.matricula}}"><i class="fa-solid fa-edit"></i></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

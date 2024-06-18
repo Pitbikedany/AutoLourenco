@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style_fatura.css' %}">
+    <script src="{% static 'jquery3.7.1.min.js' %}"></script>
+    <script src="{% static 'jquery.formset.js' %}"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.textfield-row').formset({
+                prefix: '{{ formset.prefix }}',
+            });
+        })
+    </script>
+
+    <title>🛠AUTO LOURENÇO🛠</title>
+</head>
+<body>
+    <div class="div-btn-voltar">
+        <form class="form" action="{% url 'url_home' %}">
+            <button class="btn-voltar">Voltar</button>
+        </form>
+    </div>
+    <form method="POST">
+    {% csrf_token %}
+        <div class="textfield">
+            <input type="date" name="data" placeholder="Data">
+        </div>
+        <div class="textfield">
+            {{fatura_form.matricula}}
+        </div>
+        {{formset.management_form }}
+        {% for item in formset %}
+        <div class="textfield-row">
+            {{ item.descricao }}
+            {{ item.preco }}
+            {{ item.quantidade }}
+        </div>
+        <div class="textfield">
+           <button class="btn-login" type="submit">Guardar</button>
+        </div>
+        {% endfor %}
+    </form>
+</body>
+</html>
