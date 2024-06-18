@@ -1,5 +1,0 @@
-editar faturas
-ajustar html faturas
-retirar servicos
-criar .exe ou colocar projeto online
-retornar nome cliente inves de numero de tlm 
