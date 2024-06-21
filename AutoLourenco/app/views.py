@@ -306,10 +306,14 @@ def create_pdf(request,id):
         total_item.append(preco_total)
         i += 1
 
-    company = "Auto Lourenço"
-    email = "jose.rosa.lourenco@gmail.com"
-    phone = "+351 966 306 406"
-    companyAddress = "Rua Adolfo Simões Muller Nº3"
+    # company = "Auto Lourenço"
+    # email = "jose.rosa.lourenco@gmail.com"
+    # phone = "+351 966 306 406"
+    # companyAddress = "Rua Adolfo Simões Muller Nº3"
+    company = 'Empresa'
+    email = 'email@gmail.com'
+    phone = '123456789'
+    companyAddress = 'Avenida Oficina Mecanica Nº34'
     total = total_fatura
     client = cliente
     carbrand = carro
