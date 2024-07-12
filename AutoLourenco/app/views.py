@@ -306,7 +306,7 @@ def create_pdf(request,id):
         total_item.append(preco_total)
         i += 1
 
-    company = 'Empresa'
+    company = 'Auto Lourenço'
     email = 'email@gmail.com'
     phone = '123456789'
     companyAddress = 'Avenida Oficina Mecanica Nº34'
@@ -315,10 +315,10 @@ def create_pdf(request,id):
     carbrand = carro
     invoiceNumber = fatura[1]
 
-    file = invoiceNumber+"_"+client+".pdf"
-    diretory = f"faturas\{file}"
+    file = fatura[0]+"_"+invoiceNumber+"_"+client+".pdf"
+    #diretory = f"faturas\{file}"
     logo = finders.find('logo.png')
-    my_canvas = canvas.Canvas(diretory, pagesize=A4)
+    my_canvas = canvas.Canvas(file, pagesize=A4)
     mystyle = ParagraphStyle('my style',fontName='Helvetica',fontSize=10,leading=15)
     my_canvas.setLineWidth(.5)
     my_canvas.setFont('Helvetica-Bold', 18)
@@ -359,6 +359,7 @@ def create_pdf(request,id):
     line_y = 650
     i = 0
     while i < len(descricao):
+
         if line_y <= 30 and line_y >= 0:
 
             my_canvas.showPage()
@@ -371,8 +372,8 @@ def create_pdf(request,id):
 
             my_canvas.drawCentredString(49 , line_y, str(descricao[i]))
             my_canvas.drawCentredString(144, line_y, str(quantidade[i]))
-            my_canvas.drawCentredString(250, line_y, str(preco[i]))
-            my_canvas.drawCentredString(350, line_y, str(total_item[i]))
+            my_canvas.drawCentredString(250, line_y, str(preco[i]) + "€")
+            my_canvas.drawCentredString(350, line_y, str(total_item[i])+"€")
 
 
             line_y = line_y - 7
@@ -384,8 +385,8 @@ def create_pdf(request,id):
 
             my_canvas.drawCentredString(100 , line_y, str(descricao[i]))
             my_canvas.drawCentredString(210, line_y, str(quantidade[i]))
-            my_canvas.drawCentredString(320, line_y, str(preco[i]))
-            my_canvas.drawCentredString(430, line_y, str(total_item[i]))
+            my_canvas.drawCentredString(320, line_y, str(preco[i])+"€")
+            my_canvas.drawCentredString(430, line_y, str(total_item[i])+"€")
 
             line_y = line_y - 7
 
@@ -399,8 +400,9 @@ def create_pdf(request,id):
     my_canvas.setFont('Helvetica-Bold', 10)
     my_canvas.drawRightString(500, line_y-20, 'Total :')
 
+    total_euros = str(total) + "€"
     my_canvas.setFont('Helvetica', 10)
-    my_canvas.drawRightString(571, line_y-20, str(total))
+    my_canvas.drawRightString(571, line_y-20, str(total_euros))
     my_canvas.save()
 
     return FileResponse(as_attachment=True)
