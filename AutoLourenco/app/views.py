@@ -13,6 +13,7 @@ from reportlab.platypus import Paragraph
 from reportlab.lib.styles import ParagraphStyle
 from django.http import FileResponse,HttpResponse
 from django.contrib.staticfiles import finders
+
 #funcao pagina principal
 def home(request):
     return render(request,'home.html')
@@ -316,8 +317,11 @@ def create_pdf(request,id):
     invoiceNumber = fatura[1]
 
     file = fatura[0]+"_"+invoiceNumber+"_"+client+".pdf"
+
+ 
     #diretory = f"faturas\{file}"
     logo = finders.find('logo.png')
+  
     my_canvas = canvas.Canvas(file, pagesize=A4)
     mystyle = ParagraphStyle('my style',fontName='Helvetica',fontSize=10,leading=15)
     my_canvas.setLineWidth(.5)
@@ -405,4 +409,6 @@ def create_pdf(request,id):
     my_canvas.drawRightString(571, line_y-20, str(total_euros))
     my_canvas.save()
 
-    return FileResponse(as_attachment=True)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'inline; filename="{file}"'
+    return response
