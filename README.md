@@ -1,10 +1,10 @@
 # AutoLourenco
  Python | Django
  
-APP PARA OFICINA MECÂNICA
+APP WEB PARA OFICINA MECÂNICA
 # Descrição do Projeto
 
-**AutoLourenco** é uma aplicação inovadora desenvolvida com o objetivo de simplificar a gestão de oficinas mecânicas. A plataforma visa facilitar o gerenciamento de **Clientes**, **Veículos**, **Agendas** e **Serviços**, que permite oferecer uma solução eficiente e centralizada para as necessidades diárias de uma oficina.
+**AutoLourenco** é uma aplicação inovadora desenvolvida com o objetivo de simplificar a gestão de oficinas mecânicas. A plataforma visa facilitar o gerenciamento de **Clientes**, **Veículos**, **Agendas** e **Faturas**, que permite oferecer uma solução eficiente e centralizada para as necessidades diárias de uma oficina.
 
 # Objetivos
 
@@ -16,7 +16,7 @@ O principal objetivo desta aplicação é otimizar os processos administrativos 
 
 **Agenda:** Planejamento e controle de horários e compromissos, garantindo melhor organização das tarefas diárias.
 
-**Serviços:** Controle e registro dos serviços prestados.
+**Faturas:** Criação de faturas e conversão das mesas para pdf.
 
 **Área do Patrão:** Menu admin fornecido pelo django
 
