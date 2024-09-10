@@ -1,0 +1,3 @@
+ligar servidor --- python manage.py runserver
+criar base de dados --- python manage.py migrate / makemigrations (atualizar base de dados)
+criar superuser --- python manage.py createsuperuser
